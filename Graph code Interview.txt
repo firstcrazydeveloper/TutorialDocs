@@ -1,0 +1,118 @@
+- Graph problems: https://lnkd.in/dT4brkwG
+- Kahn’s topsort: https://lnkd.in/dc8VzPx7
+- Dijkstra’s shortest path: https://lnkd.in/djWD4ncp
+- Kruskal’s MST: https://lnkd.in/dUaF7dDr
+- Union find: https://lnkd.in/dmZSyGXq
+- Dynamic programming: https://lnkd.in/d85BHsQp
+
+
+Depth First: Stack
+Breath First: Queue
+
+
+Depth first move one directional till end one then switch
+Breath first move all neighbour first then switch
+
+Stack is vertical data structure
+
+Graph can be cyclic or acylic
+
+cyclic when we come back to start code from where we start
+Acyclic when we never come back to start node
+
+
+
+Space in both: O(n)
+Time in Best: O(e)
+Time in Worst: O(n2)
+
+N = # Number of Node
+E = # Number of Edge
+
+***************************************************************************
+const depthFirstGraph = (graph, sourceNode) => {
+    const stack = [sourceNode];
+    while(stack.length > 0)
+    {
+        const current = stack.pop();
+        console.log(current);
+        for(let neighbour of graph[current])
+        {
+            stack.push(neighbour);
+        }
+        
+    }
+};
+
+Recursive:
+
+const depthFirstGraph = (graph, sourceNode) => {
+   console.log(sourceNode);
+    for(let neighbour of graph[sourceNode])
+        {
+            depthFirstGraph(graph,neighbour);
+        }
+};
+
+
+const graph =
+{
+    a: ['b','c'],
+    b: ['d'],
+    c: ['e'],
+    d: ['f'],
+    e: [],
+    f: []
+};
+
+console.log("depthFirstGraph!");
+depthFirstGraph(graph, 'a');
+****************************************************************************************************
+
+
+const breathFirstGraph = (graph, sourceNode) => {
+    const stack = [sourceNode];
+    while(stack.length > 0)
+    {
+        const current = stack.shift();
+        console.log(current);
+        for(let neighbour of graph[current])
+        {
+            stack.push(neighbour);
+        }
+        
+    }
+}
+
+**********************************************************************************************
+const depthFirstGraphHasPath = (graph, sourceNode, destNode) => {
+   if (sourceNode === destNode) return true;
+  
+   for(let neighbour of graph[sourceNode])
+   {
+       if(depthFirstGraphHasPath(graph,neighbour, destNode) === true)
+       {
+          return true; 
+       }
+       
+   }
+   return false;
+};
+
+********************************************************************************************
+const breathFirstGraphHasPath = (graph, sourceNode, destNode) => {
+    if (sourceNode === destNode) return true;
+    
+    const stack = [sourceNode];
+    while(stack.length > 0)
+    {
+        const current = stack.shift();
+        for(let neighbour of graph[current])
+        {
+            if (destNode === neighbour) return true;
+            stack.push(neighbour);
+        }
+    }
+    
+    return false;
+}
