@@ -1,3 +1,6 @@
+https://www.youtube.com/watch?v=utDu3Q7Flrw
+https://www.youtube.com/watch?v=tWVWeAqZ0WU
+
 - Graph problems: https://lnkd.in/dT4brkwG
 - Kahn’s topsort: https://lnkd.in/dc8VzPx7
 - Dijkstra’s shortest path: https://lnkd.in/djWD4ncp
