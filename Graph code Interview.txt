@@ -130,7 +130,25 @@ UnDirected:
 const undirectedPath = (edges, source, target) =>
 {
     const graph = buildGraph(edges);
+    return hasPath(graph, source, target, new Set());
 
+}
+
+const hasPath = (graph, source, dest, visited) => {
+    if (source === dest) return true;
+    
+    if (visited.has(source)) return false;
+    
+    visited.add(source);
+    
+    for(let neighbor of graph[source]) {
+        
+        if (hasPath(graph, neighbor, dest,visited) === true) {
+            return true;
+        }
+        
+    }
+    return false;
 }
 
 const buildGraph = (edges) =>
@@ -158,5 +176,5 @@ const edges =
     ['o','n']
 ];
 
-let graph = buildGraph(edges);
-console.table(graph);
+let graph = undirectedPath(edges, 'i', 'o');
+console.log(graph);
